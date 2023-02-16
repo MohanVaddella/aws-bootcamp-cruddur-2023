@@ -11,6 +11,10 @@ I am providing the instructions I used for installing AWS CLI using Gitpod.
 
 I did the following steps to install AWS CLI.
 
+I followed the instructions on the AWS CLI Install Documentation Page
+You can reach out to that using the following link
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
 ```
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
