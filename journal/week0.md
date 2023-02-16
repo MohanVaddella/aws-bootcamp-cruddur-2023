@@ -2,7 +2,7 @@
 
 ## Required Homework
 
-### Installing AWS CLI
+### Install and Verify AWS CLI
 
 I am able to install the AWS CLI using Gitpod.
 
@@ -17,7 +17,7 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
-**Note to insert images**
+!.[Proof of Working AWS CLI].(assets/installing%20aws%20cli.jpg)
 
 
 ## Homework Challenges
