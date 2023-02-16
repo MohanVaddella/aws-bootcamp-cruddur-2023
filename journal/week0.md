@@ -13,6 +13,7 @@ I did the following steps to install AWS CLI.
 
 I followed the instructions on the AWS CLI Install Documentation Page
 You can reach out to that using the following link
+
 https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 ```
@@ -36,6 +37,9 @@ I created my own budget for $1 because I cannot afford any kind of spend.
 
 [Lucid Charts Share Link](https://lucid.app/lucidchart/bde2bf94-3cab-430d-bf53-a64eaf436c13/edit?viewport_loc=-196%2C25%2C1792%2C765%2C0_0&invitationId=inv_3e673c96-dd86-41de-8d95-fe18295585ef)
 
-## Homework Challenges
+## Example of Referencing a file in the codebase
+
+Example of me referencing a file in my repo [week0/aws/json/alarm-config.json](https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/blob/main/aws/json/alarm-config.json)
+
 
 
