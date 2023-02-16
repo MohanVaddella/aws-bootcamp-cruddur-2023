@@ -34,7 +34,7 @@ I created my own budget for $1 because I cannot afford any kind of spend.
 
 ![Cruddur Logical Diagram](https://user-images.githubusercontent.com/84492994/219379579-7eecc7e8-a46f-47d8-9c80-5fd521cf0336.jpeg)
 
-
+[Lucid Charts Share Link](https://lucid.app/lucidchart/bde2bf94-3cab-430d-bf53-a64eaf436c13/edit?viewport_loc=-196%2C25%2C1792%2C765%2C0_0&invitationId=inv_3e673c96-dd86-41de-8d95-fe18295585ef)
 
 ## Homework Challenges
 
