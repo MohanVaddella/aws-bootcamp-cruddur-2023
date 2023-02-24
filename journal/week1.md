@@ -55,6 +55,10 @@ I have created the notifications backend endpoint [https://github.com/MohanVadde
 
 I have implemented the frontend notifications page [https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/blob/main/frontend-react-js/src/App.js]
 
+### Add database explorer to vs code
+
+I have added the database explorer to vs code. [https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/commit/a4ce193e1a9bbe5d410804530a4ad550713470c0]
+
 ### Install docker and Postgres
 
 I have installed the docker and postgres [https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/blob/main/docker-compose.yml]
