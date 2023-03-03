@@ -158,6 +158,8 @@ I added these two env vars to the backend-flask in docker-compose.yml file
  AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
 ```
 
+## CloudWatch Logs
+
 ![xray-traces](https://user-images.githubusercontent.com/84492994/222689118-e05c2d0b-d743-4ccb-9e01-42c27c302c9b.jpg)
 
 I am able to fix the subsegment in the xray
