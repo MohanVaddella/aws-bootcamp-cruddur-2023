@@ -160,6 +160,8 @@ I added these two env vars to the backend-flask in docker-compose.yml file
 
 ![xray-traces](https://user-images.githubusercontent.com/84492994/222689118-e05c2d0b-d743-4ccb-9e01-42c27c302c9b.jpg)
 
+I am able to fix the subsegment in the xray
+
 ![xray-subsegment](https://user-images.githubusercontent.com/84492994/222689492-3342a09d-8840-4f8e-b283-3275c30deb45.jpg)
 
 ![xray-segment-traces](https://user-images.githubusercontent.com/84492994/222689550-7ea76e10-2c0f-4185-9021-3d63ffaed077.jpg)
