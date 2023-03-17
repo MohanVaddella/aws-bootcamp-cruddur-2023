@@ -151,4 +151,8 @@ I end up the [video](https://www.youtube.com/watch?v=Sa2iB33sKFo&list=PLBfufR7vy
 
 I followed this instructions [here](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-4/journal/week4.md), and I modified the lambda code to add the extra column. Do not forget to setup the VPC configuration (RDS is inside the VCP!) and it will be much easier if done on setup. After a lot of trouble, I managed to see data.
 
+## Create posts with Cruddur 
+
+Create activity was a lot of sweat and suffer but it finally works. I first managed to make the post appear, I then changed the hard-coded values Andrew had for mine. 
+
 
