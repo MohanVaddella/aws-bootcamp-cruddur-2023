@@ -19,6 +19,7 @@ from services.create_message import *
 from services.show_activity import *
 
 from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
+from lib.momento import MomentoCounter
 
 # HoneyComb ---------
 from opentelemetry import trace
@@ -261,6 +262,13 @@ def data_activities_reply(activity_uuid):
   else:
     return model['data'], 200
   return
+
+@app.route("/api/messages/counter", methods=['GET'])
+def data_messages_counter():
+
+  count = MomentoCounter.get()
+  return {'count': count}, 200
+
 
 if __name__ == "__main__":
   app.run(debug=True)
