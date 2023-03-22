@@ -12,6 +12,10 @@ tasks:
     command:
       cd frontend-react-js
       npm i
+  - name: momento
+    before: |
+      brew tap momentohq/tap
+      brew install momento-cli
 
   - name: postgres
     init: |
