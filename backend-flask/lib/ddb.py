@@ -2,6 +2,7 @@ import boto3
 import sys
 from datetime import datetime, timedelta, timezone
 import uuid
+import os
 
 class Ddb:
   def client():
@@ -11,8 +12,9 @@ class Ddb:
     else:
       attrs = {}
     dynamodb = boto3.client('dynamodb',**attrs)
+    return dynamodb
   def list_message_groups(client,my_user_uuid):
-    ddb = Ddb.client()
+    table_name = 'cruddur-messages'
     query_params = {
       'TableName': table_name,
       'KeyConditionExpression': 'pk = :pkey',
@@ -22,8 +24,13 @@ class Ddb:
         'pkey': {'S': f"GRP#{my_user_uuid}"}
       }
     }
+    print('query-params')
+    print(query_params)
+    print('client')
+    print(client)
+
     # query the table
-    response = dynamodb.query(**query_params)
+    response = client.query(**query_params)
     items = response['Items']
 
     results = []
@@ -37,7 +44,7 @@ class Ddb:
         'created_at': last_sent_at
       })
   def list_messages(client,message_group_uuid):
-    ddb = Ddb.client()
+    table_name = 'cruddur-messages'
     query_params = {
       'TableName': table_name,
       'KeyConditionExpression': 'pk = :pkey',
@@ -49,7 +56,7 @@ class Ddb:
     }
 
     # query the table
-    response = dynamodb.query(**query_params)
+    response = client.query(**query_params)
     items = response['Items']
 
     results = []
