@@ -37,7 +37,7 @@ class Ddb:
     for item in items:
       last_sent_at = item['sk']['S']
       results.append({
-        'uuid': item['user_handle']['S'],
+        'uuid': item['message_group_uuid']['S'],
         'display_name': item['user_display_name']['S'],
         'handle': item['user_handle']['S'],
         'message': item['message']['S'],
@@ -52,7 +52,7 @@ class Ddb:
       'ScanIndexForward': False,
       'Limit': 20,
       'ExpressionAttributeValues': {
-        'pkey': {'S': f"MSG#{message_group_uuid}"}
+        ':pkey': {'S': f"MSG#{message_group_uuid}"}
       }
     }
 
@@ -62,7 +62,7 @@ class Ddb:
 
     results = []
     for item in items:
-      created_At = item['sk']['S']
+      created_at = item['sk']['S']
       results.append({
         'uuid': item['user_handle']['S'],
         'display_name': item['user_display_name']['S'],
