@@ -267,11 +267,11 @@ def data_activities_reply(activity_uuid):
 def data_messages_counter():
 
   access_token = extract_access_token(request.headers)
-  try:
-    claims = cognito_jwt_token.verify(access_token)
-    cognito_user_id = claims['sub']
-    count = MessagesCounter.run(cognito_user_id=cognito_user_id)
-  return {'count': count}, 200
+  #try:
+  #  claims = cognito_jwt_token.verify(access_token)
+  #  cognito_user_id = claims['sub']
+  #  count = MessagesCounter.run(cognito_user_id=cognito_user_id)
+  #return {'count': count}, 200
 
 
 if __name__ == "__main__":
