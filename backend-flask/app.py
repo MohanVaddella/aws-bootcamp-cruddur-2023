@@ -6,7 +6,7 @@ import sys
 
 from flask_awscognito import AWSCognitoAuthentication
 
-
+from services.users_short import *
 from services.home_activities import *
 from services.notifications_activities import *
 from services.user_activities import *
@@ -63,7 +63,7 @@ provider.add_span_processor(processor)
 
 
 # X-RAY -----------
-#xray_url = os.getenv("AWS_XRAY_URL")
+#xray_url = osgetenv("AWS_XRAY_URL")
 #xray_recorder.configure(service='backend-flask', dynamic_naming=xray_url)
 
 # OTEL -------
@@ -286,6 +286,10 @@ def data_activities_reply(activity_uuid):
   else:
     return model['data'], 200
   return
+@app.route("/api/users/@<string:handle>/short", methods=['GET'])
+def data_users_short(handle):
+  data = UsersShort.run(handle)
+  return data, 200
 
 @app.route("/api/messages/counter", methods=['GET'])
 def data_messages_counter():
