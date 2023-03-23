@@ -28,7 +28,7 @@ export default function ActivityForm(props) {
         },
         body: JSON.stringify({
           message: message,
-          message_group_uuid: params.uuid
+          message_group_uuid: params.message_group_uuid
         }),
       });
       let data = await res.json();
