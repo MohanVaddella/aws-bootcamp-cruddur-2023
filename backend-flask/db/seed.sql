@@ -1,5 +1,5 @@
 -- this file was manually created
-INSERT INTO public.users (email, display_name, handle, cognito_user_id)
+INSERT INTO public.users (display_name, email, handle, cognito_user_id)
 VALUES
   -- we can grab the cognito_user_id manually from the Congito Console
   ('Andrew Brown','andrew@exampro.co' , 'andrewbrown' ,'MOCK'),

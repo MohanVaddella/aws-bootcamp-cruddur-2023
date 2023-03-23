@@ -10,6 +10,7 @@ table_name = 'cruddur-messages'
 
 table = ddb.Table(table_name)
 response = table.scan()
+
 items = response['Items']
 for item in items:
     print(item)
