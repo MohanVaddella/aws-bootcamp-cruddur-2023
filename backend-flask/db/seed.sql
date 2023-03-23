@@ -3,7 +3,8 @@ INSERT INTO public.users (display_name, email, handle, cognito_user_id)
 VALUES
   -- we can grab the cognito_user_id manually from the Congito Console
   ('Andrew Brown','andrew@exampro.co' , 'andrewbrown' ,'MOCK'),
-  ('Andrew Bayko','bayko@exampro.co' , 'bayko' ,'MOCK');
+  ('Andrew Bayko','bayko@exampro.co' , 'bayko' ,'MOCK'),
+  ('Londo Mollari', 'lmollari@centari.com','londo','MOCK');
   
 
 INSERT INTO public.activities (user_uuid, message, expires_at)
