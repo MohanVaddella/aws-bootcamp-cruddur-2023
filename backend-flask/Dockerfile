@@ -1,4 +1,4 @@
-FROM python:3.10-slim-buster
+FROM 387543059434.dkr.ecr.ap-south-1.amazonaws.com/cruddur-python:3.10-slim-buster
 
 WORKDIR /backend-flask
 
