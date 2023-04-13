@@ -40,6 +40,9 @@ tasks:
     command: |
       export GITPOD_IP=$(curl ifconfig.me)
       source  "$THEIA_WORKSPACE_ROOT/bin/rds/update-sg-rule"
+  - name: cdk
+    before: |
+      npm install aws-cdk-lib -g
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
