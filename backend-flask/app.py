@@ -17,7 +17,7 @@ from services.message_groups import *
 from services.messages import *
 from services.create_message import *
 from services.show_activity import *
-from services.users_short import *
+from services.update_profile import *
 
 from lib.cognito_jwt_token import CognitoJwtToken, extract_access_token, TokenVerifyError
 from lib.momento import MomentoCounter
@@ -175,6 +175,28 @@ def data_messages(message_group_uuid):
   except TokenVerifyError as e:
     app.logger.debug(e)
     return {}, 401
+@app.route("/api/profile/update", methods=['POST','OPTIONS'])
+@cross_origin()
+def data_update_profile():
+  bio          = request.json.get('bio',None)
+  display_name = request.json.get('display_name',None)
+  access_token = extract_access_token(request.headers)
+  try:
+    claims = cognito_jwt_token.verify(access_token)
+    cognito_user_id = claims['sub']
+    UpdateProfile.run(
+      cognito_user_id=cognito_user_id,
+      bio=bio,
+      display_name=display_name
+    )
+    if model['errors'] is not None:
+      return model['errors'], 422
+    else:
+      return model['data'], 200
+  except TokenVerifyError as e:
+    # unauthenicatied request
+    app.logger.debug(e)
+    return {}, 401
 
 @app.route("/api/messages", methods=['POST','OPTIONS'])
 @cross_origin()
@@ -182,10 +204,7 @@ def data_create_message():
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.verify(access_token)
-    # authenicatied request
-    app.logger.debug("authenicated")
-    app.logger.debug(claims)
-    app.logger.debug(claims['username'])
+    
     cognito_user_id = claims['sub']
     message = request.json['message']
 
@@ -222,6 +241,7 @@ def data_create_message():
 @app.route("/api/activities/home", methods=['GET'])
 @xray_recorder.capture('activities_home')
 def data_home():
+  print('HELLLO2==============================================================')
   access_token = extract_access_token(request.headers)
   try:
     claims = cognito_jwt_token.token.verify(access_token)
