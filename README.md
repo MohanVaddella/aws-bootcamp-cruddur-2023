@@ -1,12 +1,8 @@
 # FREE AWS Cloud Project Bootcamp
 
-"loadBalancers": [
-    {
-        "targetGroupArn": "arn:aws:elasticloadbalancing:ca-central-1:387543059434:targetgroup/cruddur-frontend-react-js/562db3dc9c310eee",
-        "containerName": "frontend-react-js",
-        "containerPort": 3000
-    }
-  ],
+
+![](https://codebuild.ca-central-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoidzQ5bVBva0pyU1lDODd1Uy96dXFxelNnTEh0dHFXUXNRR3hLT2RzRmVOaTZ5T3ZadHpSS29CazZ2SHBYckc0VXJEWEI2NFBKalMwcWM4RHh1Tk02b3RnPSIsIml2UGFyYW1ldGVyU3BlYyI6IjZTSzAxY2NiTU4rMmJJVGsiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
+
 - Application: Cruddur
 - Cohort: 2023-A1
 
@@ -42,13 +38,3 @@ The `/journal` directory contains
 
 
 
-file://aws/task-definitions/frontend-react-js.json
-docker build \
---build-arg REACT_APP_BACKEND_URL="http://cruddur-alb-1529268036.ca-central-1.elb.amazonaws.com:4567" \
---build-arg REACT_APP_AWS_PROJECT_REGION="$AWS_DEFAULT_REGION" \
---build-arg REACT_APP_AWS_COGNITO_REGION="$AWS_DEFAULT_REGION" \
---build-arg REACT_APP_AWS_USER_POOLS_ID="ca-central-1_CQ4wDfnwc" \
---build-arg REACT_APP_CLIENT_ID="5b6ro31g97urk767adrbrdj1g5" \
--t frontend-react-js \
--f Dockerfile.prod \
-.
