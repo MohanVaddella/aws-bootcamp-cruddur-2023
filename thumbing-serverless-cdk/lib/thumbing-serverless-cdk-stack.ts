@@ -16,21 +16,30 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const bucketName: string = process.env.THUMBING_BUCKET_NAME as string;
+    const uploadsBucketName: string = process.env.UPLOADS_BUCKET_NAME as string;
+    const assetsBucketName: string = process.env.ASSETS_BUCKET_NAME as string;
     const folderInput: string = process.env.THUMBING_S3_FOLDER_INPUT as string;
     const folderOutput: string = process.env.THUMBING_S3_FOLDER_OUTPUT as string;
     const webhookUrl: string = process.env.THUMBING_WEBHOOK_URL as string;
     const topicName: string = process.env.THUMBING_TOPIC_NAME as string;
     const functionPath: string = process.env.THUMBING_FUNCTION_PATH as string;
-    console.log('bucketName',bucketName)
+    console.log('uploadsBucketName',)
+    console.log('assetsBucketName',assetsBucketName)
     console.log('folderInput',folderInput)
     console.log('folderOutput',folderOutput)
     console.log('webhookUrl',webhookUrl)
     console.log('topicName',topicName)
     console.log('functionPath',functionPath)
 
-    const bucket = this.importBucket(bucketName);
-    const lambda = this.createLambda(folderInput,folderOutput,functionPath,bucketName)
+    const uploadsBucket = this.createBucket(uploadsBucketName);
+    const assetsBucket = this.importBucket(assetsBucketName);
+    const lambda = this.createLambda(
+      functionPath, 
+      uploadsBucketName, 
+      assetsBucketName, 
+      folderInput, 
+      folderOutput
+    );
 
     // This could be redundent since we have s3ReadWritePolicy?
     bucket.grantRead(lambda);
@@ -40,20 +49,22 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     this.createSnsSubscription(snsTopic,webhookUrl)
 
     // S3 Event Notifications
-    this.createS3NotifyToSns(folderOutput,snsTopic,bucket)
-    this.createS3NotifyToLambda(folderInput,lambda,bucket)
+    this.createS3NotifyToLambda(folderInput,lambda,uploadsBucket)
+    this.createS3NotifyToSns(folderOutput,snsTopic,assetsBucket)
 
-    const s3ReadWritePolicy = this.createPolicyBucketAccess(bucket.bucketArn)
-    const snsPublishPolicy = this.createPolicySnSPublish(snsTopic.topicArn)
+    const s3UploadsReadWritePolicy = this.createPolicyBucketAccess(uploadsBucket.bucketArn)
+    const s3AssetsReadWritePolicy = this.createPolicyBucketAccess(assetsBucket.bucketArn)
+   // const snsPublishPolicy = this.createPolicySnSPublish(snsTopic.topicArn)
 
-    lambda.addToRolePolicy(s3ReadWritePolicy);
-    lambda.addToRolePolicy(snsPublishPolicy);
+   lambda.addToRolePolicy(s3UploadsReadWritePolicy);
+   lambda.addToRolePolicy(s3AssetsReadWritePolicy);
+   // lambda.addToRolePolicy(snsPublishPolicy);
   }
 
   
   createBucket(bucketName: string): s3.IBucket {
     const logicalName: string = 'AssetsBucket';
-    const bucket = new s3.Bucket(this, logicalName , {
+    const bucket = new s3.Bucket(this, 'UploadsBucket', {
       bucketName: bucketName,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
@@ -64,7 +75,7 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     return bucket;
   }
 
-  createLambda(folderIntput: string, folderOutput: string, functionPath: string, bucketName: string): lambda.IFunction {
+  createLambda(functionPath: string, uploadsBucketName: string, assetsBucketName: string, folderInput: string, folderOutput: string): lambda.IFunction {
 
     const logicalName = 'ThumbLambda';
     const code = lambda.Code.fromAsset(functionPath)
@@ -73,7 +84,7 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
       handler: 'index.handler',
       code: code,
       environment: {
-        DEST_BUCKET_NAME: bucketName,
+        DEST_BUCKET_NAME: assetsBucketName,
         FOLDER_INPUT: folderIntput,
         FOLDER_OUTPUT: folderOutput,
         PROCESS_WIDTH: '512',
@@ -95,8 +106,8 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     const destination = new s3n.SnsDestination(snsTopic)
     bucket.addEventNotification(
       s3.EventType.OBJECT_CREATED_PUT, 
-      destination,
-      {prefix: prefix}
+      destination//,
+      //{prefix: prefix} // folder to contain the original images
     );
   }
 
