@@ -29,7 +29,7 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     console.log('topicName',topicName)
     console.log('functionPath',functionPath)
 
-    const bucket = this.createBucket(bucketName)
+    const bucket = this.importBucket(bucketName);
     const lambda = this.createLambda(folderInput,folderOutput,functionPath,bucketName)
 
     // This could be redundent since we have s3ReadWritePolicy?
@@ -52,11 +52,15 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
 
   
   createBucket(bucketName: string): s3.IBucket {
-    const logicalName: string = 'ThumbingBucket';
+    const logicalName: string = 'AssetsBucket';
     const bucket = new s3.Bucket(this, logicalName , {
       bucketName: bucketName,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
+    return bucket;
+  }
+  importBucket(bucketName: string): s3.IBucket {
+    const bucket = s3.Bucket.fromBucketName(this,"AssetsBucket",bucketName);
     return bucket;
   }
 
