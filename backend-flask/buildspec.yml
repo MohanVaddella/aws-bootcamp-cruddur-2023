@@ -28,7 +28,7 @@ env:
     AWS_ACCOUNT_ID: 105178145684
     AWS_DEFAULT_REGION: ap-south-1
     CONTAINER_NAME: backend-flask
-    IMAGE_URL: 387543059434.dkr.ecr.ap-south-1.amazonaws.com
+    IMAGE_URL: 105178145684.dkr.ecr.ap-south-1.amazonaws.com
     REPO_NAME: backend-flask:latest
 artifacts:
   files:

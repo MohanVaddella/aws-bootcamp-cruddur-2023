@@ -8,7 +8,7 @@ services:
       - ./frontend-react-js:/frontend-react-js
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
-      REACT_APP_AWS_USER_POOLS_ID: "ca-central-1_CQ4wDfnwc"
+      REACT_APP_AWS_USER_POOLS_ID: "ap-south-1_CQ4wDfnwc"
       REACT_APP_CLIENT_ID: "5b6ro31g97urk767adrbrdj1g5"
 
   backend-flask:
@@ -20,7 +20,7 @@ services:
       FRONTEND_URL: "https://3000-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
-      AWS_COGNITO_USER_POOL_ID: "ca-central-1_CQ4wDfnwc"
+      AWS_COGNITO_USER_POOL_ID: "ap-south-1_CQ4wDfnwc"
       AWS_COGNITO_USER_POOL_CLIENT_ID: "5b6ro31g97urk767adrbrdj1g5"
 
   dynamodb-local:
