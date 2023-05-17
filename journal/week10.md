@@ -58,18 +58,61 @@ We can the re-deploy, make sure to check that the exports of the network stack a
 
 <img width="1515" alt="task15" src="https://user-images.githubusercontent.com/84492994/236667370-64342dda-285b-4c54-9894-3763ceae2f29.png">
 
-<img width="1151" alt="task16" src="https://user-images.githubusercontent.com/84492994/236667390-158aa0a8-5944-423b-8492-ce05098ac38a.png">
-
 ### ECS Cluster Stack deploys correctly
 
-<img width="500" alt="task17" src="https://user-images.githubusercontent.com/84492994/236667419-32c958f1-a2f9-4862-976c-1c1b1ee02c27.png">
+<img width="1151" alt="task16" src="https://user-images.githubusercontent.com/84492994/236667390-158aa0a8-5944-423b-8492-ce05098ac38a.png">
 
 ### Cfn Diagram enhanced with Clusters
+
+<img width="500" alt="task17" src="https://user-images.githubusercontent.com/84492994/236667419-32c958f1-a2f9-4862-976c-1c1b1ee02c27.png">
 
 Detail view of the ALB
 
 <img width="375" alt="task18" src="https://user-images.githubusercontent.com/84492994/236667438-3cebad30-4da3-443a-a6f0-8824cfbae35e.png">
 
+### Fixing the Backend Service (& deploying RDS as IaaC)
+
+In order to fix the service, we realized we needed first to deploy RDS
+
+<img width="1022" alt="task19" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/bac3c25e-0693-4367-b058-d3db87108984">
+
+There are a couple manual steps shown in the video - to update in systems manager the connection URL:
+
+<img width="1022" alt="task20" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/5d4829a0-db43-4494-b3cc-df86c0af62b9">
+
+<img width="1022" alt="task21" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/7bf856b3-112f-4d73-bff7-3ed76e728eee">
+
+This should be an env variable:
+
+```
+gp env  DB_PASSWORD=<YOUR DB PASSWORD>
+```
+### Important
+
+There is a fix needed undocumented in the videos. The ALB target group for the backend should be edited. The health check should point to port 4567, not port 80.
+
+#### Health check working
+
+Health-check seein in service tab:
+
+<img width="1022" alt="task22" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/73b1a442-bb02-4cc4-a2db-6b2090e679c0">
+
+Health-check seein in ALB tab:
+
+<img width="1022" alt="task23" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/5ff2c023-52a1-474c-b9f4-39ed6b221008">
+
+### Change Route 53 A records
+The A records for cruddur.ch and api.crudur.ch should point to the new load balancer:
+
+<img width="1022" alt="task24" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/c1740dee-ac58-4a37-bf85-8f5dea9fb476">
+
+Once done, it can be accessed as expected from the internet at https://api.cruddur.ch/api/health-check
+
+<img width="1022" alt="task25" src="https://github.com/MohanVaddella/aws-bootcamp-cruddur-2023/assets/84492994/4de0b442-b7b1-4bc3-b073-3fcb5af60aff">
+
+## TO DO - DIAGRAM
+
+https://www.youtube.com/watch?v=y6ShAco6Edg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=102
 
 
 
