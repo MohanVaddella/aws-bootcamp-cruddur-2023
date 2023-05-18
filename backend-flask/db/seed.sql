@@ -3,6 +3,7 @@ INSERT INTO public.users (display_name, email, handle, cognito_user_id)
 VALUES
   -- we can grab the cognito_user_id manually from the Congito Console
   ('Mohan Vaddella','mohanvaddella@gmail.com' , 'mohan' ,'MOCK'),
+  ('Shiva Sai','shivasai@gmail.com' , 'shiva' ,'MOCK'),
   ('Ravi Krishna','ravikrishna@gmail.com' , 'ravi' ,'MOCK'),
   ('Lasya Sri', 'lasyasri@gmail.com','lasya','MOCK');
   
