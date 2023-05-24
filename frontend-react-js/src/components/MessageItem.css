@@ -7,6 +7,9 @@
 }
 
 .message_item .avatar {
+}
+
+.message_item .avatar {
   cursor: pointer;
   text-decoration: none;
 }
